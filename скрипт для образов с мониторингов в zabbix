@@ -1,0 +1,22 @@
+#!/bin/bash
+
+found=$(losetup -a | grep win)
+
+if [ -n "$found" ]; then
+echo 1 >/var/log/isomount.log 2>&1
+
+
+
+
+else
+isopath="/home/samba/shares/iso/"
+mountiso="win7 win7x32 win8 win8x32"
+format=".iso"
+distpath="/home/samba/shares/distr"
+
+for name in $mountiso; do
+mount -t udf -o loop $isopath$name$format $distpath/$name >/dev/null 2>&1 && echo 0 >/var/log/isomount.log
+done
+
+fi
+exit

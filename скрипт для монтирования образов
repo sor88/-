@@ -1,0 +1,21 @@
+#!/bin/bash
+
+found=$(losetup -a | grep win)
+
+if [ -n "$found" ]; then
+echo \" Образы подключены \" >>/var/log/isomount.log 2>&1
+
+
+
+
+else
+isopath="/home/samba/shares/iso/"
+mountiso="win7 win7x32 win8 win8x32"
+format=".iso"
+distpath="/home/samba/shares/distr"
+
+for name in $mountiso; do 
+mount -t udf -o loop $isopath$name$format $distpath/$name >>/var/log/isomount.log 2>&1
+done
+fi
+exit

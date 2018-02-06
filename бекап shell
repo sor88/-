@@ -1,0 +1,10 @@
+#!/bin/bash
+oldarchive=`ls -1 /backup/backup_*`
+#oldarchive=$(ls -la /backup/)
+nameback="date +%Y.%m.%d_%H_%M"
+nobackup="--exclude=/backup --exclude=/mnt --exclude=/proc --exclude=/lost+found --exclude=/dev --exclude=/sys --exclude=/tmp --exclude=/media --exclude=/home"
+tar -cvpzf /backup/backup_`$nameback`.tgz $nobackup /
+rm -R $oldarchive
+
+exit
+ 

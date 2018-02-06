@@ -1,0 +1,6 @@
+ 
+
+#!/bin/bash
+nobackup="--exclude=/backup --exclude=/mnt --exclude=/proc --exclude=/lost+found --exclude=/dev --exclude=/sys --exclude=/tmp --exclude=/media --exclude=/home"
+sudo rsync -var $nobackup / rsync://freenas.edushd.ru/systemdns
+exit
